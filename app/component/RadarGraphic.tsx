@@ -2,41 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts';
+import { RadarGraphicData } from '../types';
 
-const data = [
-  {
-    subject: 'frontend',
-    A: 90,
-    fullMark: 100,
-  },
-  {
-    subject: 'backend',
-    A: 98,
-    fullMark: 100,
-  },
-  {
-    subject: 'charismatic',
-    A: 86,
-    fullMark: 100,
-  },
-  {
-    subject: 'teamwork',
-    A: 99,
-    fullMark: 100,
-  },
-  {
-    subject: 'design',
-    A: 85,
-    fullMark: 100,
-  },
-  {
-    subject: 'management',
-    A: 65,
-    fullMark: 100,
-  },
-];
+export const useIsServerSide = () => {
+  const [isServerSide, setIsServerSide] = useState(true);
 
-export const RadarGraphic = () => {
+  useEffect(() => {
+    setIsServerSide(false);
+  }, [setIsServerSide]);
+
+  return isServerSide;
+};
+
+interface RadarGraphicProps {
+  data: RadarGraphicData[];
+}
+
+export const RadarGraphic = ({ data }: RadarGraphicProps) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -51,6 +33,8 @@ export const RadarGraphic = () => {
     // Clean up event listener on unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  const isServerSide = useIsServerSide();
+  if (isServerSide) return null;
   return (
     <RadarChart
       cx={isMobile ? 150 : 200}
@@ -66,8 +50,7 @@ export const RadarGraphic = () => {
         tick={{ fontSize: isMobile ? 'x-small' : 'small' }}
       />
       <Radar
-        name="Mike"
-        dataKey="A"
+        dataKey="score"
         stroke="#888888"
         fill="#999999"
         fillOpacity={0.6}

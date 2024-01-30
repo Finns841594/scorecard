@@ -1,22 +1,25 @@
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
-import React from 'react';
+import { Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
 import SimpleTable from './SimpleTable';
+import { Project } from '../types';
+import Icon from '@/public/icons/Icon';
 
-const ProjectCard = () => {
+interface ProjectCardProps {
+  project: Project;
+}
+
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div>
-      <Card shadow="sm" className="my-2">
-        <CardHeader className="mt-2">Project 01</CardHeader>
+      <Card shadow="sm" className="my-2 p-2">
+        <CardHeader className="flex justify-between">
+          <p className="font-semibold">{project.name}</p>
+          <a href={project.repoUrl} target="_blank">
+            <Icon icon="github" className="h-6 w-6 fill-black" />
+          </a>
+        </CardHeader>
+        <Divider />
         <CardBody className="text-small">
-          <SimpleTable
-            data={{
-              Commits: 10,
-              Issues: 50,
-              Duration: '2 week',
-              Performance: '95%',
-              TestCoverage: '90%',
-            }}
-          />
+          <SimpleTable data={project.data} />
         </CardBody>
       </Card>
     </div>
