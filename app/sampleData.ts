@@ -40,15 +40,11 @@ export const sampleGeneratedDeveloperData = {
   linkedinUrl: 'https://www.linkedin.com/in/feng-yang-511361166/',
   backgroundInformation: {
     nationalities: ['Chinese'],
-    spokenLanguages: {
-      swedish: 'intermediate',
-      chinese: 'natives',
-      english: 'fluent',
-    },
+    spokenLanguages: ['English', 'Chinese', 'Swedish'],
     academic: {
       id: 'f41430af-58e6-4895-b523-93004dc828dd',
-      degree: 'master',
-      major: 'architecture',
+      degree: 'Master',
+      major: 'Architecture',
       startDate: '12-08-2018',
       endDate: '12-08-2020',
       school: 'KTH Royal Institute of Technology',

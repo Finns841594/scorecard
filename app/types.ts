@@ -11,7 +11,7 @@ export type academic = {
 
 export type BackgroundInformation = {
   nationalities: string[];
-  spokenLanguages: SimpleTableEntry;
+  spokenLanguages: string[];
   academic: academic;
   skills: string[];
 };
